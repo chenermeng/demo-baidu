@@ -1,0 +1,39 @@
+/*common-style*/
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.fix::after{
+    context:'';
+    display:block;
+    clear:both;
+}
+html,body {
+    min-width:980px;
+    height:100%;
+    font-size:12px;
+    text-align:center;
+}
+/*index-background*/
+#wrap {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-10;
+    background-position:center 0;
+    background-repeat:no-repeat;
+    background-image:url("../img/bg.jpg");
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    -ms-background-size:cover;
+}
+/*header-style*/
+
+/*main-style*/
+/*footer-style*/
