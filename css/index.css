@@ -6,7 +6,7 @@
     float:right;
 }
 .fix::after{
-    context:'';
+    content:'';
     display:block;
     clear:both;
 }
@@ -36,7 +36,7 @@ html, body{
 /*header-style*/
 /*头部导航条*/
 .wrapper-top{
-    color:#c8ccd5;
+    color:#fff;
 }
 .wrapper-top{
     height:40px;
@@ -55,18 +55,118 @@ html, body{
     color:#badc00;
 }
 /*头部左侧菜单*/
-.wrapper-s-menu{
+.wrapper-s-menu,.wrapper-right-menu{
     text-decoration:underline;
     font-size:0;/*解决inline-block 换行被解析问题*/
 }
-.wrapper-s-menu a {
+.wrapper-s-menu a,.wrapper-right-menu a {
     font-size:12px;/*解决inline-block 换行被解析问题*/
-    color:#c8ccd5;
+    color:#fff;
+    display:inline-block;
 }
-.wrapper-s-menu span {
-    padding:0 5px;
+.wrapper-s-menu a {
+    padding:0 4px;
 }
 /*头部右侧菜单*/
-.wrapper-right-menu{ }
+.wrapper-right-menu a {
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    margin-left:20px;
+    text-decoration:underline;
+}
+.wrapper-right-menu a.more-pro {
+    width:86px;
+    text-align:center;
+    background:#398bfb;
+}
+
+/*百度搜索框部分*/
+.header-wrap {
+    position: relative;
+    height: 38.2%;
+    min-height: 293px;
+    width: 1000px;
+    margin: 0 auto;
+    position:relative;
+    z-index:999;
+}
+.header-wrap .search-form-wrap {
+    width: 644px;
+    height: 100%;
+    min-height: 293px;
+    margin: 0 auto 0 auto;
+    text-align: left;
+    z-index: 100;
+}
+.header-wrap .baidu-logo {
+    width:270px;
+    margin:0 auto;
+    height: 61.8%;
+    min-height: 181px;
+    position: relative;
+    z-index: 0;
+    text-align: center;
+}
+.header-wrap .baidu-logo img {
+    width:270px;
+}
+.header-wrap .form-search {
+    width:640px;
+    margin:0 auto;
+}
+.form-search .form-text {
+    width:536px;
+    height:40px;
+    line-height:30px;
+    text-indent:10px;
+}
+.form-search .form-btn {
+    width:104px;
+    height:40px;
+    line-height:40px;
+    background-image:linear-gradient(top,white,#ccc);
+    background-image:-webkit-linear-gradient(top,white,#ccc);
+    background-image:-moz-linear-gradient(top,white,#ccc);
+    background-image:-ms-linear-gradient(top,white,#ccc);
+}
+.form-search .show-info {
+    color:#000;
+    width:536px;
+    background:#fff;
+    border-top:1px solid #ccc;
+    display:none
+}
+.form-search .show-info li {
+    height:30px;
+    line-height:30px;
+}
+.form-search .show-info li a {
+    padding-left:10px;
+    display:inline-block;
+    width:526px;
+}
+.form-search .show-info li a:hover {
+    background:#ccc;
+}
 /*main-style*/
+.main {
+    width:896px;
+    margin:0 auto;
+    background:rgb(235,235,237);
+}
+.main .contain-top {
+    height:40px;
+    border-bottom:1px solid #ccc;
+}
+.main .contain-top li{
+    line-height:40px;
+    float:left;
+    padding:0 12px;
+    font-size:18px;
+    font-weight:bold;
+}
+.main .contain-top  {
+
+}
 /*footer-style*/
