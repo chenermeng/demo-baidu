@@ -35,12 +35,12 @@ html, body{
 }
 
 @font-face {
-    font-family: 'iconfont';  /* project id："89293" */
-    src: url('//at.alicdn.com/t/font_1462869301_2703366.eot');
-    src: url('//at.alicdn.com/t/font_1462869301_2703366.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1462869301_2703366.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1462869301_2703366.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1462869301_2703366.svg#iconfont') format('svg');
+    font-family: 'iconfont';  /* project id 89293 */
+    src: url('//at.alicdn.com/t/font_chum6c1tnbyjsjor.eot');
+    src: url('//at.alicdn.com/t/font_chum6c1tnbyjsjor.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_chum6c1tnbyjsjor.woff') format('woff'),
+    url('//at.alicdn.com/t/font_chum6c1tnbyjsjor.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_chum6c1tnbyjsjor.svg#iconfont') format('svg');
 }
 .iconfont {
     font-family:"iconfont";
@@ -288,45 +288,40 @@ html, body{
 
 
 
-    /*
-    .contain-top .ready-add {
-        width:50%;
-    }
-    .contain-top .ready-add h3{
-        text-align:left;
-        height:30px;
-        line-height:30px;
-        font-weight:normal;
-    }
-    .contain-top .ready-add .ready-wrap {
-
-    }
-    .contain-top .ready-add .ready-wrap>span {
-        width:80px;
-        height:24px;
-        line-height:24px;
-        border:1px solid #ccc;
-        padding:4px 8px;
-    }
-    .contain-top .unready-add {
-        width:50%;
-    }*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*回到顶部*/
+#toTop {
+    width:40px;
+    position:fixed;
+    right:180px;
+    bottom:30px;
+    -webkit-transform-style:preserve-3d;
+    transition:0.3s;
+    -webkit-transform-origin:center center -20px;
+}
+.toTop {
+    float:left;
+    width:40px;
+    height:38px;
+    text-align:center;
+    line-height:38px;
+    font-size:36px;
+    color:#000;
+    opacity:.5;
+}
+#toTop span:nth-of-type(2) {
+    color:darkgoldenrod;
+    position:absolute;left:0;
+    top:-38px;
+    -webkit-transform-origin:bottom;
+    -webkit-transform:rotateX(90deg)
+}
+/*toDo 修改js中时/
+/*
+#toTop:hover {
+    -webkit-transform:rotateX(-90deg);
+}*/
 /*footer-style*/
 .footer{
     margin:20px 0 10px;
