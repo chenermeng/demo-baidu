@@ -3,18 +3,32 @@
 <head lang="zh">
     <meta charset="UTF-8">
     <title>demo-百度</title>
-    <meta name="description" content="百度首页的demo" />
-    <meta name="keywords" content="demo-baidu" />
-    <meta name="author" content="https://github.com/chenermeng/demo-baidu" />
+    <meta name="description" content="百度首页的demo"/>
+    <meta name="keywords" content="demo-baidu"/>
+    <meta name="author" content="https://github.com/chenermeng/demo-baidu"/>
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/index.css"/>
 </head>
 <body>
-<!--百度头部菜单部分-->
-<div id="wrap"></div>
-<div class="header">
-
+<!--主页背景-->
+<div id="bg-wrap"></div>
+<div class="wrapper-top fix">
+    <!--头部左侧天气部分-->
+    <div class="wrapper-weather fl">
+        <span class="show-city">北京</span> <span class="show-temp">4℃</span> <span class="show-pollution">良</span>
+        <span class="show-airParam">63</span> <span class="">|</span>
+    </div>
+    <!--头部左侧 小菜单-->
+    <div class="wrapper-s-menu fl">
+        <a href="javascript:;"><span>宝箱</span></a>
+        <a href="javascript:;"><span>换肤</span></a>
+        <a href="javascript:;"><span>消息</span></a>
+    </div>
+    <!--头部右侧菜单-->
+    <div class="wrapper-right-menu fr"></div>
 </div>
+<!--百度上部搜索部分部分-->
+<div class="header-wrap"></div>
 <!--百度主体部分-->
 <div class="main"></div>
 <!--百度底部部分-->

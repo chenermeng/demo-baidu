@@ -10,14 +10,14 @@
     display:block;
     clear:both;
 }
-html,body {
+html, body{
     min-width:980px;
     height:100%;
     font-size:12px;
     text-align:center;
 }
 /*index-background*/
-#wrap {
+#bg-wrap{
     position:fixed;
     top:0;
     left:0;
@@ -34,6 +34,39 @@ html,body {
     -ms-background-size:cover;
 }
 /*header-style*/
-
+/*头部导航条*/
+.wrapper-top{
+    color:#c8ccd5;
+}
+.wrapper-top{
+    height:40px;
+    line-height:40px;
+    background-image:linear-gradient(rgba(15, 25, 50, .3) 0, rgba(15, 25, 50, .3) 100%);
+}
+/*头部天气部分*/
+.wrapper-weather{
+    margin-left:10px;
+    font-weight:bold;
+}
+.wrapper-weather span{
+    padding:0 5px;
+}
+.wrapper-weather .show-pollution{
+    color:#badc00;
+}
+/*头部左侧菜单*/
+.wrapper-s-menu{
+    text-decoration:underline;
+    font-size:0;/*解决inline-block 换行被解析问题*/
+}
+.wrapper-s-menu a {
+    font-size:12px;/*解决inline-block 换行被解析问题*/
+    color:#c8ccd5;
+}
+.wrapper-s-menu span {
+    padding:0 5px;
+}
+/*头部右侧菜单*/
+.wrapper-right-menu{ }
 /*main-style*/
 /*footer-style*/
