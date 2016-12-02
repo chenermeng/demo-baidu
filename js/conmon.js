@@ -68,7 +68,8 @@ var utils = (function(){
         } else {
             if(attr == 'opacity'){
                 val = curEle.currentStyle.opacity;
-                var reg = /^alpha\(opacity[:=](\d+(\.\d+)?)\)$/; 
+                var reg = /^alpha\(opacity[:=](\d+(\.\d+)?)\)$/;
+                reg.test(val)
             }
         }
 
