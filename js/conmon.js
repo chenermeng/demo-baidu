@@ -61,6 +61,12 @@ var utils = (function(){
         return Math.round(Math.random() * (n - m) + m);
     }
 
+    /**
+     * 获取curELe的样式
+     * @param curEle
+     * @param attr
+     * @returns {*}
+     */
     function getCss(curEle, attr){
         var val = null;
         if('getComputedStyle' in window){
@@ -69,17 +75,67 @@ var utils = (function(){
             if(attr == 'opacity'){
                 val = curEle.currentStyle.opacity;
                 var reg = /^alpha\(opacity[:=](\d+(\.\d+)?)\)$/;
-                reg.test(val)
+                return reg.test(val) ? reg.exec(val)[1] / 100 : 1;
+            } else {
+                val = curEle.currentStyle[attr];
             }
         }
-
+        var reg = /^([+-])?(\d+(\.\d+)?)(px|pt|rem|em|deg)$/ig;
+        return reg.test(val) ? parseFloat(val) : val;
     }
 
-    function setCss(){}
+    /**
+     * 设置css样式
+     * @param curEle
+     * @param attr
+     * @param val val有单位的传参时需要加上单位(未作单位处理)；
+     */
+    function setCss(curEle, attr, val){
+        if(attr == 'float'){
+            curEle.style.cssFloat = val;
+            curEle.style.styleFloat = val;
+            return;
+            ``
+        }
+        if(attr == 'opacity'){
+            curEle.style.opacity = val;
+            curEle.style.filter = 'alpha(opacity:' + (val * 100) + ')';
+            return;
+        }
+        curEle.style[attr] = val;
+    }
 
-    function setGroupCss(){}
+    /**
+     * 设置一组css样式
+     * @param curEle
+     * @param opt
+     */
+    function setGroupCss(curEle, opt){
+        if({}.toString.call(opt) !== '[object Object]')return;
+        for(var attr in opt){
+            this.setCss(curEle, attr, opt[attr]);
+        }
+    }
 
-    function css(){}
+    /**
+     * 设置或者获取css样式
+     * @param curEle
+     * @returns {*}
+     */
+
+    function css(curEle){
+        var secondParam = arguments[1];
+        var thirdParam = arguments[2];
+        if(typeof secondParam == 'string'){
+            if(thirdParam == null){
+                return this.getCss(curEle, secondParam)
+            }
+            this.setCss(curEle, secondParam, thirdParam)
+        }
+        if({}.toString.call(secondParam) === '[object Object]'){
+            this.setGroupCss(curEle, secondParam)
+        }
+    }
 
     function getByClass(){}
 
@@ -89,7 +145,18 @@ var utils = (function(){
 
     function removeClass(){}
 
-    function win(){}
+    /**
+     * 设置或者获取浏览器窗口的一些数据
+     * @param attr
+     * @param val
+     * @returns {*}
+     */
+    function win(attr,val){
+        if(val == null){
+            return document.documentElement[attr] || document.body[attr];
+        }
+        document.documentElement[attr] = document.body[attr] = val;
+    }
 
     function offset(){}
 
@@ -120,4 +187,36 @@ var utils = (function(){
     function insertBefore(){}
 
     function insertAfter(){}
+
+    return {
+        $ : $,
+        makeArray : makeArray,
+        jsonParse : jsonParse,
+        getRandom : getRandom,
+        getCss : getCss,
+        setCss : setCss,
+        setGroupCss : setGroupCss,
+        css : css,
+        getByClass : getByClass,
+        hasClass : hasClass,
+        addClass : addClass,
+        removeClass : removeClass,
+        win : win,
+        offset : offset,
+        getChildren : getChildren,
+        prev : prev,
+        next : next,
+        sibling : sibling,
+        prevAll : prevAll,
+        nextAll : nextAll,
+        siblings : siblings,
+        firstChild : firstChild,
+        lastChild : lastChild,
+        index : index,
+        appendChild : appendChild,
+        prependChild : prependChild,
+        insertBefore : insertBefore,
+        insertAfter : insertAfter
+
+    }
 })();
