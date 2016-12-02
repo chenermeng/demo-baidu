@@ -174,11 +174,12 @@ html, body{
     border-bottom:1px solid #ccc;
     position:relative;
 }
-.main .contain-top .set {
+.main .contain-top .set-btn {
     font-size:20px;
     position:absolute;
-    width:24px;
-    height:24px;
+    width:28px;
+    height:28px;
+    line-height:28px;
     right:10px;
     top:4px;
     cursor:pointer;
@@ -210,19 +211,122 @@ html, body{
     left:0;
     width:100%;
     background:#fff;
+    padding:10px 25px;
+    box-sizing:border-box;
+    display:none;
+    z-index:9;
 }
-.contain-top .ready-add {
+.set-left,.set-right {
     width:50%;
+    float:left;
 }
-.contain-top .ready-add {
+.set-left h3,.set-right h3  {
+    padding:4px 0;
+    text-align:left;
+    height:30px;
+    line-height:30px;
+    font-weight:normal;
+}
+.concern {
+    width:60px;
+    margin-top:10px;
+    padding:6px 10px;
+    text-align:center;
+    font-size:14px;
+    border:1px solid #ccc;
 
 }
-.contain-top .ready-add {
+.add-wrap {
+    padding-left:8px;
+    margin-left:84px;
+}
+.add-box {
+    position:relative;
+    float:left;
+    margin:10px 8px;
+}
+.add-box:hover .add-close {
+    background:#398bfb
+}
+.add-box:hover .add-con {
+    border-color:#398bfb
+}
+.add-close {
+    position:absolute;
+    top:-6px;
+    left:-6px;
+    width:12px;
+    height:12px;
+    line-height:12px;
+    font-size:12px;
+    border-radius:50%;
+    color:#fff;
+    background:#ccc;
+}
+.add-con {
+    width:40px;
+    padding:6px 10px;
+    text-align:center;
+    font-size:14px;
+    border:1px dashed #ccc;
+}
+.set-right .add-wrap {
+    margin:0;
+}
 
-}
-.contain-top .unready-add {
-    width:50%;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    .contain-top .ready-add {
+        width:50%;
+    }
+    .contain-top .ready-add h3{
+        text-align:left;
+        height:30px;
+        line-height:30px;
+        font-weight:normal;
+    }
+    .contain-top .ready-add .ready-wrap {
+
+    }
+    .contain-top .ready-add .ready-wrap>span {
+        width:80px;
+        height:24px;
+        line-height:24px;
+        border:1px solid #ccc;
+        padding:4px 8px;
+    }
+    .contain-top .unready-add {
+        width:50%;
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*footer-style*/
 .footer{
     margin:20px 0 10px;
