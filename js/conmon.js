@@ -137,7 +137,37 @@ var utils = (function(){
         }
     }
 
-    function getByClass(){}
+    /**
+     * 通过class名字获取元素标签
+     * @param strClass  class名 支持多个 用空格隔开
+     * @param context 指定上下文
+     * @returns {*}
+     */
+    function getByClass(strClass, context){
+        context = context || document;
+        if(document.getElementsByClassName){
+            return context.getElementsByClassName(strClass);
+        }
+        var arr = [];
+        var arrClass = strClass.replace(/^\s+|\s+$/, '').split(/\s+/);
+        var tags = context.getElementsByTagName('*');
+        for(var i = 0; i < tags.length; i++){
+            var curTag = tags[i];
+            var flag = true;
+            for(var j = 0; j < arrClass.length; j++){
+                var curClass = arrClass[j];
+                var reg = new RegExp('(^|\\s+)' + curClass + '(\\s+|$)')
+                if(!reg.test(curTag.className)){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                arr.push(curTag);
+            }
+        }
+        return arr;
+    }
 
     function hasClass(){}
 
@@ -151,7 +181,7 @@ var utils = (function(){
      * @param val
      * @returns {*}
      */
-    function win(attr,val){
+    function win(attr, val){
         if(val == null){
             return document.documentElement[attr] || document.body[attr];
         }
