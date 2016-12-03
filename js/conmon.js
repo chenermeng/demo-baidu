@@ -169,9 +169,20 @@ var utils = (function(){
         return arr;
     }
 
-    function hasClass(){}
+    /**
+     * 判断是否有class名
+     * @param curEle
+     * @param strClass 单个className
+     * @returns {boolean}
+     */
+    function hasClass(curEle,strClass){
+        var reg = new RegExp('(^|\\s+)'+strClass+'(\\s+|%)')
+        return reg.test(curEle.className)
+    }
 
-    function addClass(){}
+    function addClass(curEle,strClass){
+        
+    }
 
     function removeClass(){}
 

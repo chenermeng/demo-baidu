@@ -127,14 +127,17 @@ html, body{
 .header-wrap .form-search{
     width:640px;
     margin:0 auto;
+    position:relative;
 }
 .form-search .form-text{
     width:536px;
     height:40px;
     line-height:30px;
     text-indent:10px;
+    float:left;
 }
 .form-search .form-btn{
+    float :left;
     width:104px;
     height:40px;
     line-height:40px;
@@ -144,6 +147,8 @@ html, body{
     background-image:-ms-linear-gradient(top, white, #ccc);
 }
 .form-search .show-info{
+    position:absolute;
+    top:40px;
     color:#000;
     width:536px;
     background:#fff;
@@ -158,6 +163,10 @@ html, body{
     padding-left:10px;
     display:inline-block;
     width:526px;
+    color:#000;
+    text-decoration:none;
+    background:#fff;
+
 }
 .form-search .show-info li a:hover{
     background:#ccc;
