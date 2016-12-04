@@ -12,51 +12,81 @@
     var oTxt = utils.$('form-text')
     var oBtn = utils.$('form-btn')
     var oUl = oBox.getElementsByTagName('ul')[0];
-    console.log(oUl)
     var aLi = oUl.getElementsByTagName('li');
     var aA = oUl.getElementsByTagName('a');
     var oldValue = null;
-    var flag = false; /*设置开关 键盘事件不加载数据*/
+    var newValue = null;
+    var flag = true;
+    var data = null;
+    /*设置开关 键盘事件不加载数据*/
     var n = -1;
-    //编辑或聚焦时如果有内容则显示
-     oTxt.onkeyup = oTxt.onfocus = function(){
+
+    oTxt.onkeyup = oTxt.onfocus = function(e){
+        e = e || window.event;
         if(oTxt.value.length){
             oUl.style.display = 'block';
+            getData(oTxt.value);
+            /*if(oTxt.value!=prevStr){
+             var str = oTxt.value;
+             }
+             var prevStr = oTxt.value;
+             getData(str)
+             var arr = utils.makeArray(aA);
+             console.log(typeof str)
+             if(arr&&arr.length){
+             flag = arr.every(function(item,index,arr){
+             return str !=item.innerHTML
+             })
+             prevStr = str;
+             }
+             //  console.log(flag)
+             if(flag){
+             flag = false;
+             getData(str);
+             }*/
         } else {
-            oUl.style.display = 'none';
-            oldValue = null;
-        }
-        var str = oTxt.value;
-        if(str){
-            //只有焦点或者
-            getData(str);
+            oUl.style.display = 'none'
         }
     }
-    oTxt.onkeydown = function(e){
-        flag = false;
+  /*  oTxt.onkeydown = function(e){
         e = e || window.event;
         if(e.keyCode == 40){
-            n++;
-            if(n >= aA.length){
-                n = -1;
+            if(n >= aA.length - 1){
+                n = -2;
             }
+            n++;
+            listShow();
+        } else if(e.keyCode == 38){
+            if(n <= -1){
+                n = aA.length;
+            }
+            n--;
             listShow();
         }
+
     }
+    //键盘上下按键
     function listShow(){
-        for(var i = 0; i < aA.length; i++){
-            aA[i].style.background = '#ccc';
+        for(var i=0;i<aA.length;i++){
+            aA[i].style.background = null;
         }
-        oTxt.value = aA[n].innerHTML;
-    }
+        if(!oldValue){
+            oldValue = oTxt.value;
+        }
+        console.log(n)
+        if(n == -1){
+            oTxt.value = oldValue;
+        }else {
+            aA[n].style.background = '#ccc';
+            oTxt.value = aA[n].innerHTML;
+        }
+    }*/
 
     //禁止冒泡
     oTxt.onclick = function(e){
         e = e || window.event;
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
-
     }
-
     //事件委托
     document.body.onclick = function(e){
         e = e || window.event;
@@ -81,7 +111,7 @@
     //获取数据
     function getData(str){
         //防止多次添加script标签
-        flag = false;
+        //flag = false;
         var oS = document.getElementsByClassName('getData')[0];
         if(oS){
             oS.parentNode.removeChild(oS)
@@ -91,11 +121,10 @@
         oScript.src = 'http://suggestion.baidu.com/su?wd=' + str + '&cb=myCallback';
         document.body.appendChild(oScript);
     }
-
     //回调函数 数据插入页面
     window.myCallback = function(data){
         // if(a){}
-        var data = data.s;
+        data = data.s;
         var oUl = utils.$('search-wrap').getElementsByTagName('ul')[0];
         var str = ''
         data.forEach(function(item, index, data){
@@ -104,6 +133,4 @@
         })
         oUl.innerHTML = str;
     }
-    //'http://suggestion.baidu.com/su?wd='+this.value+'&cb=callback' ;
-    //str = 'https://www.baidu.com/s?&wd='+oText.value;
 })();
