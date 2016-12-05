@@ -175,16 +175,39 @@ var utils = (function(){
      * @param strClass 单个className
      * @returns {boolean}
      */
-    function hasClass(curEle,strClass){
-        var reg = new RegExp('(^|\\s+)'+strClass+'(\\s+|%)')
+    function hasClass(curEle, strClass){
+        var reg = new RegExp('(^|\\s+)' + strClass + '(\\s+|$)')
         return reg.test(curEle.className)
     }
 
-    function addClass(curEle,strClass){
-        
+    /**
+     * 添加className 支持添加多个
+     * @param curEle
+     * @param strClass
+     */
+    function addClass(curEle, strClass){
+        var arrClass = strClass.replace(/^\s+|\s+$/, '').split(/\s+/);
+        for(var i = 0; i < arrClass.length; i++){
+            if(!utils.hasClass(curEle, arrClass[i])){
+                curEle.className += ' ' + arrClass[i];
+            }
+        }
     }
 
-    function removeClass(){}
+    /**
+     * remove className 支持删除多个
+     * @param curEle
+     * @param strClass
+     */
+    function removeClass(curEle, strClass){
+        var arrClass = strClass.replace(/^\s+|\s+$/, '').split(/\s+/);
+        for(var i = 0; i < arrClass.length; i++){
+            var reg = new RegExp('(^|\\s+)' + arrClass[i] + '(\\s+|$)');
+            if(utils.hasClass(curEle, arrClass[i])){
+                curEle.className = curEle.className.replace(reg, ' ');
+            }
+        }
+    }
 
     /**
      * 设置或者获取浏览器窗口的一些数据
@@ -199,7 +222,29 @@ var utils = (function(){
         document.documentElement[attr] = document.body[attr] = val;
     }
 
-    function offset(){}
+    /**
+     *  curEle 到 body的距离
+     * @param curEle
+     * @returns {{left: (number|Number), top: (number|Number)}}
+     */
+    function offset(curEle){
+        var oParent = curEle.offsetParent;
+        var l = curEle.offsetLeft;
+        var t = curEle.offsetTop;
+        while(oParent){
+            if(window.navigator.userAgent.indexOf('IE 8') == -1){
+                l += oParent.clientLeft;
+                t += oParent.clientTop;
+            }
+            l += oParent.offsetLeft;
+            t += oParent.offsetTop;
+            oParent = oParent.offsetParent;
+        }
+        return {
+            left : l,
+            top : t
+        }
+    }
 
     function getChildren(){}
 
