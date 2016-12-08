@@ -249,7 +249,29 @@ var utils = (function(){
         }
     }
 
-    function getChildren(){}
+    /**
+     * 获取子元素 支持筛选标签
+     * @param curEle
+     * @param tagName
+     * @returns {Array}
+     */
+    function getChildren(curEle,tagName){
+        var childs = curEle.childNodes;
+        var arr =[];
+        for(var i=0;i<childs.length;i++){
+            var cur = childs[i];
+            if(cur.nodeType == 1){
+                if(tagName){
+                    if(tagName.toUpperCase() == cur.nodeName.toUpperCase()){
+                        arr.push(cur);
+                    }
+                }else{
+                    arr.push(cur);
+                }
+            }
+        }
+        return arr;
+    }
 
     function prev(){}
 
