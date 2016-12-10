@@ -273,23 +273,121 @@ var utils = (function(){
         return arr;
     }
 
-    function prev(){}
+    /**
+     * 获取哥哥元素
+     * @param curEle
+     * @returns {*}
+     */
+    function prev(curEle){
+        if(curEle.previousElementSibling){
+            return curEle.previousElementSibling;
+        }
+        var prev = curEle.previousSibling;
+        while(prev && prev.nodeType !== 1){
+            prev = prev.previousSibling;
+        }
+        return prev;
+    }
 
-    function next(){}
+    /**
+     * 获取弟弟元素
+     * @param curEle
+     * @returns {*}
+     */
+    function next(curEle){
+        if(curEle.nextElementSibling){
+            return curEle.nextElementSibling;
+        }
+        var next = curEle.nextSibling;
+        while(next && next.nodeType !== 1){
+            next = next.nextSibling;
+        }
+        return next;
+    }
 
-    function sibling(){}
+    /**
+     * 获取相邻元素
+     * @param curEle
+     * @returns {Array}
+     */
+    function sibling(curEle){
+        var arr = []
+        var prev = this.prev(curEle);
+        var next = this.next(curEle)
+        if(prev)arr.push(prev)
+        if(next)arr.push(next)
+        return arr;
+    }
 
-    function prevAll(){}
+    /**
+     * 获取所有哥哥元素
+     * @param curEle
+     * @returns {Array}
+     */
+    function prevAll(curEle){
+        var prev = this.prev(curEle);
+        var arr = [];
+        while(prev){
+            arr.push(prev)
+            prev = this.prev(prev);
+        }
+        return arr;
+    }
 
-    function nextAll(){}
+    /**
+     * 获取所有弟弟元素
+     * @param curEle
+     * @returns {Array}
+     */
+    function nextAll(curEle){
+        var next = this.next(curEle)
+        var arr = [];
+        while(next){
+            arr.push(next);
+            next = this.next(next);
+        }
+        return arr;
+    }
 
-    function siblings(){}
+    /**获取所有相邻元素
+     *
+     * @param curEle
+     * @returns {*}
+     */
+    function siblings(curEle){
+        var prevAll = this.prevAll(curEle);
+        var nextAll = this.nextAll(curEle);
+        return prevAll.concat(nextAll)
+    }
 
-    function firstChild(){}
+    /**
+     * 获取第一个子元素
+     * @param curEle
+     * @returns {*}
+     */
+    function firstChild(curEle){
+        var childs = this.getChildren(curEle);
+        return childs[0]
+    }
 
-    function lastChild(){}
+    /**
+     * 获取最后一个子元素
+     * @param curEle
+     * @returns {*}
+     */
+    function lastChild(curEle){
+        var childs = this.getChildren(curEle);
+        return childs[childs.length-1]
+    }
 
-    function index(){}
+    /**获取当前元素的索引
+     *
+     * @param curEle
+     * @returns {*}
+     */
+    function index(curEle){
+        return this.prevAll(curEle).length;
+    }
 
     function appendChild(curEle,oParent){
         oParent.appendChild(curEle);
