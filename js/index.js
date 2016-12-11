@@ -58,7 +58,8 @@
             n--;
             listShow();
         }
-        if(e.keyCode==37||e.keyCode==38||e.keyCode==39||e.keyCode==40  ){
+
+        if(e.keyCode==37||e.keyCode==38||e.keyCode==39||e.keyCode==40 ||e.keyCode==13  ){
             isKey = true;
         }else{
             isKey = false;
@@ -99,6 +100,9 @@
         }
         if(target != oBtn || target != oTxt){
             oUl.style.display = 'none';
+            for(var i=0;i<aA.length;i++){
+                aA[i].style.background = null;
+            }
         }
     }
     //点击搜索
@@ -132,6 +136,7 @@
            // arrData.push(item);
         })
         oUl.innerHTML = str;
+        n = -1;/*初始化n的数值*/
         /*初始化oldvalue*/
         oldValue = null;
     }
