@@ -6,14 +6,14 @@
  */
 
 //utils为一些常用的方法
-var utils = (function(){
+var utils = (function () {
 
     /**
      * 通过id命获取元素 注意不用传#
      * @param id
      * @returns {Element}
      */
-    function $(id){
+    function $(id) {
         return document.getElementById(id);
     }
 
@@ -22,7 +22,7 @@ var utils = (function(){
      * @param str
      * @returns {Object}
      */
-    function jsonParse(str){
+    function jsonParse(str) {
         return 'JSON' in window ? JSON.parse(str) : eval('(' + str + ')');
     }
 
@@ -32,12 +32,12 @@ var utils = (function(){
      * @returns Array;
      */
 
-    function makeArray(likeArray){
-        try{
+    function makeArray(likeArray) {
+        try {
             return Array.prototype.slice.call(likeArray);
         } catch (e) {
             var arr = [];
-            for(var i = 0; i < likeArray.length; i++){
+            for (var i = 0; i < likeArray.length; i++) {
                 arr.push(likeArray[i])
             }
             return arr;
@@ -50,13 +50,13 @@ var utils = (function(){
      * @param n
      * @returns random int;
      */
-    function getRandom(m, n){
+    function getRandom(m, n) {
         m = Number(m)
         n = Number(n);
-        if(isNaN(m) || isNaN(n)){
+        if (isNaN(m) || isNaN(n)) {
             return Math.random();
         }
-        if(m > n){
+        if (m > n) {
             m = m + n;
             n = m - n;
             m = m - n;
@@ -70,12 +70,12 @@ var utils = (function(){
      * @param attr
      * @returns {*}
      */
-    function getCss(curEle, attr){
+    function getCss(curEle, attr) {
         var val = null;
-        if('getComputedStyle' in window){
+        if ('getComputedStyle' in window) {
             val = getComputedStyle(curEle, false)[attr];
         } else {
-            if(attr == 'opacity'){
+            if (attr == 'opacity') {
                 val = curEle.currentStyle.opacity;
                 var reg = /^alpha\(opacity[:=](\d+(\.\d+)?)\)$/;
                 return reg.test(val) ? reg.exec(val)[1] / 100 : 1;
@@ -93,14 +93,14 @@ var utils = (function(){
      * @param attr
      * @param val val有单位的传参时需要加上单位(未作单位处理)；
      */
-    function setCss(curEle, attr, val){
-        if(attr == 'float'){
+    function setCss(curEle, attr, val) {
+        if (attr == 'float') {
             curEle.style.cssFloat = val;
             curEle.style.styleFloat = val;
             return;
             ``
         }
-        if(attr == 'opacity'){
+        if (attr == 'opacity') {
             curEle.style.opacity = val;
             curEle.style.filter = 'alpha(opacity:' + (val * 100) + ')';
             return;
@@ -113,9 +113,9 @@ var utils = (function(){
      * @param curEle
      * @param opt
      */
-    function setGroupCss(curEle, opt){
-        if({}.toString.call(opt) !== '[object Object]')return;
-        for(var attr in opt){
+    function setGroupCss(curEle, opt) {
+        if ({}.toString.call(opt) !== '[object Object]')return;
+        for (var attr in opt) {
             this.setCss(curEle, attr, opt[attr]);
         }
     }
@@ -126,16 +126,16 @@ var utils = (function(){
      * @returns {*}
      */
 
-    function css(curEle){
+    function css(curEle) {
         var secondParam = arguments[1];
         var thirdParam = arguments[2];
-        if(typeof secondParam == 'string'){
-            if(thirdParam == null){
+        if (typeof secondParam == 'string') {
+            if (thirdParam == null) {
                 return this.getCss(curEle, secondParam)
             }
             this.setCss(curEle, secondParam, thirdParam)
         }
-        if({}.toString.call(secondParam) === '[object Object]'){
+        if ({}.toString.call(secondParam) === '[object Object]') {
             this.setGroupCss(curEle, secondParam)
         }
     }
@@ -146,26 +146,26 @@ var utils = (function(){
      * @param context 指定上下文
      * @returns {*}
      */
-    function getByClass(strClass, context){
+    function getByClass(strClass, context) {
         context = context || document;
-        if(document.getElementsByClassName){
+        if (document.getElementsByClassName) {
             return context.getElementsByClassName(strClass);
         }
         var arr = [];
         var arrClass = strClass.replace(/^\s+|\s+$/, '').split(/\s+/);
         var tags = context.getElementsByTagName('*');
-        for(var i = 0; i < tags.length; i++){
+        for (var i = 0; i < tags.length; i++) {
             var curTag = tags[i];
             var flag = true;
-            for(var j = 0; j < arrClass.length; j++){
+            for (var j = 0; j < arrClass.length; j++) {
                 var curClass = arrClass[j];
                 var reg = new RegExp('(^|\\s+)' + curClass + '(\\s+|$)')
-                if(!reg.test(curTag.className)){
+                if (!reg.test(curTag.className)) {
                     flag = false;
                     break;
                 }
             }
-            if(flag){
+            if (flag) {
                 arr.push(curTag);
             }
         }
@@ -178,7 +178,7 @@ var utils = (function(){
      * @param strClass 单个className
      * @returns {boolean}
      */
-    function hasClass(curEle, strClass){
+    function hasClass(curEle, strClass) {
         var reg = new RegExp('(^|\\s+)' + strClass + '(\\s+|$)')
         return reg.test(curEle.className)
     }
@@ -188,10 +188,10 @@ var utils = (function(){
      * @param curEle
      * @param strClass
      */
-    function addClass(curEle, strClass){
+    function addClass(curEle, strClass) {
         var arrClass = strClass.replace(/^\s+|\s+$/, '').split(/\s+/);
-        for(var i = 0; i < arrClass.length; i++){
-            if(!utils.hasClass(curEle, arrClass[i])){
+        for (var i = 0; i < arrClass.length; i++) {
+            if (!utils.hasClass(curEle, arrClass[i])) {
                 curEle.className += ' ' + arrClass[i];
             }
         }
@@ -202,11 +202,11 @@ var utils = (function(){
      * @param curEle
      * @param strClass
      */
-    function removeClass(curEle, strClass){
+    function removeClass(curEle, strClass) {
         var arrClass = strClass.replace(/^\s+|\s+$/, '').split(/\s+/);
-        for(var i = 0; i < arrClass.length; i++){
+        for (var i = 0; i < arrClass.length; i++) {
             var reg = new RegExp('(^|\\s+)' + arrClass[i] + '(\\s+|$)');
-            if(utils.hasClass(curEle, arrClass[i])){
+            if (utils.hasClass(curEle, arrClass[i])) {
                 curEle.className = curEle.className.replace(reg, ' ');
             }
         }
@@ -218,8 +218,8 @@ var utils = (function(){
      * @param val
      * @returns {*}
      */
-    function win(attr, val){
-        if(val == null){
+    function win(attr, val) {
+        if (val == null) {
             return document.documentElement[attr] || document.body[attr];
         }
         document.documentElement[attr] = document.body[attr] = val;
@@ -230,12 +230,12 @@ var utils = (function(){
      * @param curEle
      * @returns {{left: (number|Number), top: (number|Number)}}
      */
-    function offset(curEle){
+    function offset(curEle) {
         var oParent = curEle.offsetParent;
         var l = curEle.offsetLeft;
         var t = curEle.offsetTop;
-        while(oParent){
-            if(window.navigator.userAgent.indexOf('IE 8') == -1){
+        while (oParent) {
+            if (window.navigator.userAgent.indexOf('IE 8') == -1) {
                 l += oParent.clientLeft;
                 t += oParent.clientTop;
             }
@@ -244,8 +244,8 @@ var utils = (function(){
             oParent = oParent.offsetParent;
         }
         return {
-            left : l,
-            top : t
+            left: l,
+            top: t
         }
     }
 
@@ -255,17 +255,17 @@ var utils = (function(){
      * @param tagName
      * @returns {Array}
      */
-    function getChildren(curEle,tagName){
+    function getChildren(curEle, tagName) {
         var childs = curEle.childNodes;
-        var arr =[];
-        for(var i=0;i<childs.length;i++){
+        var arr = [];
+        for (var i = 0; i < childs.length; i++) {
             var cur = childs[i];
-            if(cur.nodeType == 1){
-                if(tagName){
-                    if(tagName.toUpperCase() == cur.nodeName.toUpperCase()){
+            if (cur.nodeType == 1) {
+                if (tagName) {
+                    if (tagName.toUpperCase() == cur.nodeName.toUpperCase()) {
                         arr.push(cur);
                     }
-                }else{
+                } else {
                     arr.push(cur);
                 }
             }
@@ -278,12 +278,12 @@ var utils = (function(){
      * @param curEle
      * @returns {*}
      */
-    function prev(curEle){
-        if(curEle.previousElementSibling){
+    function prev(curEle) {
+        if (curEle.previousElementSibling) {
             return curEle.previousElementSibling;
         }
         var prev = curEle.previousSibling;
-        while(prev && prev.nodeType !== 1){
+        while (prev && prev.nodeType !== 1) {
             prev = prev.previousSibling;
         }
         return prev;
@@ -294,12 +294,12 @@ var utils = (function(){
      * @param curEle
      * @returns {*}
      */
-    function next(curEle){
-        if(curEle.nextElementSibling){
+    function next(curEle) {
+        if (curEle.nextElementSibling) {
             return curEle.nextElementSibling;
         }
         var next = curEle.nextSibling;
-        while(next && next.nodeType !== 1){
+        while (next && next.nodeType !== 1) {
             next = next.nextSibling;
         }
         return next;
@@ -310,12 +310,12 @@ var utils = (function(){
      * @param curEle
      * @returns {Array}
      */
-    function sibling(curEle){
+    function sibling(curEle) {
         var arr = []
         var prev = this.prev(curEle);
         var next = this.next(curEle)
-        if(prev)arr.push(prev)
-        if(next)arr.push(next)
+        if (prev)arr.push(prev)
+        if (next)arr.push(next)
         return arr;
     }
 
@@ -324,10 +324,10 @@ var utils = (function(){
      * @param curEle
      * @returns {Array}
      */
-    function prevAll(curEle){
+    function prevAll(curEle) {
         var prev = this.prev(curEle);
         var arr = [];
-        while(prev){
+        while (prev) {
             arr.push(prev)
             prev = this.prev(prev);
         }
@@ -339,10 +339,10 @@ var utils = (function(){
      * @param curEle
      * @returns {Array}
      */
-    function nextAll(curEle){
+    function nextAll(curEle) {
         var next = this.next(curEle)
         var arr = [];
-        while(next){
+        while (next) {
             arr.push(next);
             next = this.next(next);
         }
@@ -354,7 +354,7 @@ var utils = (function(){
      * @param curEle
      * @returns {*}
      */
-    function siblings(curEle){
+    function siblings(curEle) {
         var prevAll = this.prevAll(curEle);
         var nextAll = this.nextAll(curEle);
         return prevAll.concat(nextAll)
@@ -365,7 +365,7 @@ var utils = (function(){
      * @param curEle
      * @returns {*}
      */
-    function firstChild(curEle){
+    function firstChild(curEle) {
         var childs = this.getChildren(curEle);
         return childs[0]
     }
@@ -375,9 +375,9 @@ var utils = (function(){
      * @param curEle
      * @returns {*}
      */
-    function lastChild(curEle){
+    function lastChild(curEle) {
         var childs = this.getChildren(curEle);
-        return childs[childs.length-1]
+        return childs[childs.length - 1]
     }
 
     /**获取当前元素的索引
@@ -385,90 +385,128 @@ var utils = (function(){
      * @param curEle
      * @returns {*}
      */
-    function index(curEle){
+    function index(curEle) {
         return this.prevAll(curEle).length;
     }
 
-    function appendChild(curEle,oParent){
+    /**
+     * 末尾添加元素
+     * @param curEle
+     * @param oParent
+     */
+    function appendChild(curEle, oParent) {
         oParent.appendChild(curEle);
     }
 
-    function prependChild(curEle,oParent){
+    /**
+     * 开头添加元素
+     * @param curEle
+     * @param oParent
+     */
+    function prependChild(curEle, oParent) {
         var first = this.first(curEle);
-        if(first){
-            oParent.insertBefore(curEle,first);
-        }else{
+        if (first) {
+            oParent.insertBefore(curEle, first);
+        } else {
             oParent.appendChild(curEle)
         }
     }
 
-    function insertBefore(){}
+    /**
+     * 插入-前边
+     * @param curEle
+     * @param oldEle
+     */
+    function insertBefore(curEle, oldEle) {
+        oldEle.parentNode.insertBefore(curEle, oldEle);
+    }
 
-    function insertAfter(){}
+    /**
+     * 插入-后边
+     * @param curEle
+     * @param oldEle
+     */
+    function insertAfter(curEle, oldEle) {
+        var next = this.next(oldEle);
+        if (next) {
+            oldEle.parentNode.insertBefore(curEle, next);
+        } else {
+            oldEle.parentNode.appendChild(curEle)
+        }
+    }
 
 
     /**
      * 解析url地址中？后边传递的参数以键值对形式输出
+     * @param str url
+     * @returns {{}}
      */
-    function queryURLParameter(){
-
+    function queryURLParameter(str) {
+        var obj = {};
+        var reg = /([^?=&#]+)=([^?=&#]+)/i;
+        str.replace(reg, function () {
+            obj[arguments[1]] = arguments[2];
+        })
+        return obj;
     }
 
 
     /**
      * ajax的封装
      */
-    function ajax(){}
+    function ajax() {
+    }
 
     /**
      * jsonp的封装
      */
-    function jsonp(){}
+    function jsonp() {
+    }
 
     /**
      * 把键值对形式的转化为 key1=val1&key2=val2 形式
      */
-    function paramsSerialize(){}
+    function paramsSerialize() {
+    }
 
     /**
      * 字符串拼接到url后边
      * @param url
      * @param string
      */
-    function appendToURL(url,string){}
-
-
+    function appendToURL(url, string) {
+    }
 
 
     return {
-        $ : $,
-        makeArray : makeArray,
-        jsonParse : jsonParse,
-        getRandom : getRandom,
-        getCss : getCss,
-        setCss : setCss,
-        setGroupCss : setGroupCss,
-        css : css,
-        getByClass : getByClass,
-        hasClass : hasClass,
-        addClass : addClass,
-        removeClass : removeClass,
-        win : win,
-        offset : offset,
-        getChildren : getChildren,
-        prev : prev,
-        next : next,
-        sibling : sibling,
-        prevAll : prevAll,
-        nextAll : nextAll,
-        siblings : siblings,
-        firstChild : firstChild,
-        lastChild : lastChild,
-        index : index,
-        appendChild : appendChild,
-        prependChild : prependChild,
-        insertBefore : insertBefore,
-        insertAfter : insertAfter
+        $: $,
+        makeArray: makeArray,
+        jsonParse: jsonParse,
+        getRandom: getRandom,
+        getCss: getCss,
+        setCss: setCss,
+        setGroupCss: setGroupCss,
+        css: css,
+        getByClass: getByClass,
+        hasClass: hasClass,
+        addClass: addClass,
+        removeClass: removeClass,
+        win: win,
+        offset: offset,
+        getChildren: getChildren,
+        prev: prev,
+        next: next,
+        sibling: sibling,
+        prevAll: prevAll,
+        nextAll: nextAll,
+        siblings: siblings,
+        firstChild: firstChild,
+        lastChild: lastChild,
+        index: index,
+        appendChild: appendChild,
+        prependChild: prependChild,
+        insertBefore: insertBefore,
+        insertAfter: insertAfter
 
     }
 })();
