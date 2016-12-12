@@ -406,6 +406,40 @@ var utils = (function(){
 
     function insertAfter(){}
 
+
+    /**
+     * 解析url地址中？后边传递的参数以键值对形式输出
+     */
+    function queryURLParameter(){
+
+    }
+
+
+    /**
+     * ajax的封装
+     */
+    function ajax(){}
+
+    /**
+     * jsonp的封装
+     */
+    function jsonp(){}
+
+    /**
+     * 把键值对形式的转化为 key1=val1&key2=val2 形式
+     */
+    function paramsSerialize(){}
+
+    /**
+     * 字符串拼接到url后边
+     * @param url
+     * @param string
+     */
+    function appendToURL(url,string){}
+
+
+
+
     return {
         $ : $,
         makeArray : makeArray,
