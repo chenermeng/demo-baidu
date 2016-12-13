@@ -443,7 +443,7 @@ var utils = (function () {
      */
     function queryURLParameter(str) {
         var obj = {};
-        var reg = /([^?=&#]+)=([^?=&#]+)/i;
+        var reg = /([^?=&#]+)=([^?=&#]+)/ig;
         str.replace(reg, function () {
             obj[arguments[1]] = arguments[2];
         })
