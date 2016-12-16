@@ -464,9 +464,41 @@ var utils = (function () {
     }
 
     /**
+     * 判断数据类型
+     * @param {*} data 待判断的数据
+     * @param {string} type 类型
+     */
+    function isType(data, type) {
+        return Object.prototype.toString.call(data) === '[object ' + type + ']';
+
+    }
+    /**
      * 把键值对形式的转化为 key1=val1&key2=val2 形式
      */
     function paramsSerialize() {
+            // 判断data是否为字符串
+            if (utils.isType(data, 'String')) {
+                return data;
+            }
+            // 如果data为null或者undefined
+            if (data === null || data === undefined) {
+                return '';
+            }
+            // 如果data为对象
+            // {a:1,b:2}
+            if (utils.isType(data, 'Object')) {
+                var arr = [];
+                for (var name in data) {
+                    if (!data.hasOwnProperty(name)) continue;
+                    // 因为URL中不能存在非英文字符，所以需要格式化为URIString格式
+                    arr.push(encodeURIComponent(name)
+                        + '='
+                        + encodeURIComponent(data[name]));
+                }
+                // ['a=1','b=2'] 使用 & 来join
+                return arr.join('&');
+            }
+            return String(data);
     }
 
     /**
@@ -475,8 +507,16 @@ var utils = (function () {
      * @param string
      */
     function appendToURL(url, string) {
+            // 先将用户传过来的参数格式化一下
+        string = utils.param(padStirng);
+            // 判断url中是否含有？，如有？说明URL中已存在请求参数，
+            // 否则，不存请求参数
+            var hasQuery = /\?/.test(url);
+            // 有问号，再往后拼接参数，应该使用&
+            // a.com?a=1&b=2
+            // a.com?c=3
+            return url + (hasQuery ? '&' : '?') + string;
     }
-
 
     return {
         $: $,
