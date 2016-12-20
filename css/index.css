@@ -287,17 +287,103 @@ html, body{
 
 
 
+/*小说*/
+.contain-main {
+    padding:10px 25px;
+}
+.contain-main .book_list {
+    width: 273px;
+    height: 170px;
+    border-top: 1px solid #eee;
+    float: left;
+    background: #f8f8f8;
+    margin-top:10px;
+    position: relative;
+}
+.contain-main .book_list:nth-of-type(3n+2){
+    margin:10px 5px 0;
+}
+.contain-main .book_name {
+    position: relative;
+    padding: 9px 15px 12px 10px;
+}
+.contain-main .book_details{
+    width: 120px;
+    text-align: left;
+    padding-top: 25px;
+}
+.contain-main .book_details p,.contain-main .book_details h2  {
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    color: #666;
+}
 
 
+/*体育轮播图*/
+.scroll_pic{
+    width:548px;
+    height:312px;
+    position: relative;
+}
+.scroll_pic .boxInner{
+    position: absolute;
+    left:0;
+    top:0;
+    width: 4000px;
+}
+.scroll_pic .boxInner div{
+    float: left;
+    width: 548px;
+    height: 300px;
+}
+.scroll_pic .boxInner div img{
+       width: 100%;
+       display: block;
+   }
 
 
-
-
-
-
-
-
-
+.scroll_pic ul{
+    position: absolute;
+    bottom:40px;
+    left:50%;
+    margin-left:-40px;
+}
+.scroll_pic ul li{
+    float: left;
+    margin-left: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+.scroll_pic ul li.on{
+    background: lightblue;
+}
+.scroll_pic a{
+    position: absolute;
+    width: 30px;
+    height: 45px;
+    top:130px;
+    opacity: 0.3;
+    filter: alpha(opacity:30);
+    background-image: url("../img/pre.png");
+    background-repeat: no-repeat;
+    display: none;
+}
+.scroll_pic a:hover{
+    opacity: 0.8;
+    filter: alpha(opacity:80);
+}
+.scroll_pic a.left{
+    background-position: 0 0;
+    left:20px;
+}
+.scroll_pic a.right{
+    background-position: -50px 0;
+    right:20px;
+}
 
 /*回到顶部*/
 #toTop {
@@ -326,6 +412,14 @@ html, body{
     -webkit-transform-origin:bottom;
     -webkit-transform:rotateX(90deg)
 }
+
+
+
+
+
+
+
+
 /*toDo 修改js中时/
 /*
 #toTop:hover {
