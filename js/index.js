@@ -120,7 +120,7 @@
         }
         var oScript = document.createElement('script');
         oScript.className = 'getData';
-        oScript.src = 'http://suggestion.baidu.com/su?wd=' + str + '&cb=myCallback';
+        oScript.src = 'https://suggestion.baidu.com/su?wd=' + str + '&cb=myCallback';
         document.body.appendChild(oScript);
     }
     //回调函数 数据插入页面
