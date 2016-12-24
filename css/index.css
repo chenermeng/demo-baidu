@@ -325,6 +325,7 @@ html, body{
     width:548px;
     height:312px;
     position: relative;
+    overflow: hidden;
 }
 .scroll_pic .boxInner{
     position: absolute;
